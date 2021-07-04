@@ -1,7 +1,7 @@
 # learning_safe_login
 Proyecto personal para aprender a crear un sistema de login seguro utilizando una REST API y SQLite.
-- Utiliza node como administrador web.
-- Utiliza node como lenguaje de API REST backend.
+- Utiliza Node como administrador web.
+- Utiliza Node como lenguaje de API REST backend.
 - Utiliza HTML/SCSS/Javascript plano para frontend.
 
 Como iniciar:
