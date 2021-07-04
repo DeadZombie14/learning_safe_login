@@ -1,17 +1,17 @@
 {
-  "name": "learning_safe_login",
+  "name": "learning_safe_login_server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node .",
+    "start": "nodemon .",
     "db": "node generateDB.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DeadZombie14/learning_safe_login.git"
   },
-  "author": "mathier",
+  "author": "Mathier",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DeadZombie14/learning_safe_login/issues"
@@ -20,5 +20,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
   }
 }
