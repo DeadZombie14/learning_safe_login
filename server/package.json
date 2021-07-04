@@ -1,0 +1,24 @@
+{
+  "name": "learning_safe_login",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node .",
+    "db": "node generateDB.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeadZombie14/learning_safe_login.git"
+  },
+  "author": "mathier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DeadZombie14/learning_safe_login/issues"
+  },
+  "homepage": "https://github.com/DeadZombie14/learning_safe_login#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2"
+  }
+}
