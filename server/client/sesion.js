@@ -9,7 +9,15 @@ loginForm.addEventListener("submit",(event) => {
         nombre: nombre,
         password: password
     }
-    fetch("/api/iniciarSesion",{method: "POST", body: JSON.stringify(datos)}).then((respuesta) => respuesta.json()).then((respuesta) => console.log(respuesta));
+    fetch("/api/iniciarSesion",
+        {
+            method: "POST", 
+            body: JSON.stringify(datos),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    ).then((respuesta) => respuesta.json()).then((respuesta) => console.log(respuesta));
     evaluarSesion(true);
 });
 evaluarSesion(false);

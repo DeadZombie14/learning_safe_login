@@ -29,7 +29,7 @@ db.serialize(()=>{
     stmt.run("mathier","mathier");
     stmt.finalize();
     stmt = db.prepare('INSERT INTO sesion (token, fecha_acceso) VALUES (?,?)');
-    const now = new Date().toISOString();
+    const now = new Date().toUTCString();
     stmt.run("asdasd12345",now);
     stmt.finalize();
 
