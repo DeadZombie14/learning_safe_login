@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/DeadZombie14/learning_safe_login#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "sqlite3": "^5.0.2"
   },

@@ -2,12 +2,15 @@ const express = require("express");
 const app = express();
 const puerto = 3000;
 
+const cookieSystem = require("cookie-parser");
+
 // DB Sqlite3
 const sqlite3 = require("sqlite3");
 const db = new sqlite3.Database("learning_login_db", () => console.log("Cargando base de datos..."));
 
 // API (backend con node)
 app.use(express.json()); // Parsear parametros JSON
+app.use(cookieSystem()); // Parsear parametros JSON
 
 app.get('/api', (request, response) => { // Cargar backend cuando se acceda a API
     response.send("API login 1.0");
@@ -25,6 +28,16 @@ app.post('/api/iniciarSesion', (request, response) => {
             response.status(401).send({mensaje:"Sesión invalida."});
         }
     });
+});
+
+app.get('/api/comprobarSesion', (request, response) => {
+    const sesion = request.cookies;
+    console.log(sesion);
+    if(sesion) {
+        if(sesion.token)
+            response.send({estado: "valida"});
+    } else
+        response.status(401).send({estado: "invalida"});
 });
 
 // Servidor cliente (frontend html plano)

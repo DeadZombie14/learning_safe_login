@@ -18,13 +18,17 @@ loginForm.addEventListener("submit",(event) => {
             }
         }
     ).then((respuesta) => respuesta.json()).then((respuesta) => console.log(respuesta));
-    evaluarSesion(true);
+    evaluarSesion();
 });
-evaluarSesion(false);
+evaluarSesion();
 /**
  * Simplemente revisa el estado de la sesión y actualiza el header acorde a la misma
  */
-function evaluarSesion(sesion = false) {
+function evaluarSesion() {
+    const sesion = false;
+    fetch("/api/comprobarSesion").then((respuesta) => respuesta.json()).then((respuesta) => {
+        console.log(respuesta);
+    });
     const header = document.querySelector(".header");
     header.innerHTML = "";
     if(!sesion) {
@@ -37,7 +41,6 @@ function evaluarSesion(sesion = false) {
         botonSalir.id = "botonSalir";
         botonSalir.textContent = "Salir";
         botonSalir.addEventListener("click",(event)=>{
-            evaluarSesion(false);
         });
         header.appendChild(botonSalir);
     }
