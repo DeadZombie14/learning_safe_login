@@ -17,8 +17,10 @@ loginForm.addEventListener("submit",(event) => {
                 'Content-Type': 'application/json'
             }
         }
-    ).then((respuesta) => respuesta.json()).then((respuesta) => console.log(respuesta));
-    evaluarSesion();
+    ).then((respuesta) => respuesta.json()).then((respuesta) => {
+        console.log(respuesta);
+        evaluarSesion();
+    });
 });
 evaluarSesion();
 /**
@@ -28,20 +30,30 @@ function evaluarSesion() {
     const sesion = false;
     fetch("/api/comprobarSesion").then((respuesta) => respuesta.json()).then((respuesta) => {
         console.log(respuesta);
+        const header = document.querySelector(".header");
+        header.innerHTML = "";
+        if(respuesta.estado === "valida") {
+            const botonSalir = document.createElement("div");
+            botonSalir.id = "botonSalir";
+            botonSalir.textContent = "Salir";
+            botonSalir.addEventListener("click",(event)=>{
+                cerrarSesion();
+            });
+            header.appendChild(botonSalir);
+        } else {
+            const sesionInfo = document.createElement("div");
+            sesionInfo.id = "estadoSesion";
+            sesionInfo.textContent = "Sesión no iniciada";
+            header.appendChild(sesionInfo);
+        }
     });
-    const header = document.querySelector(".header");
-    header.innerHTML = "";
-    if(!sesion) {
-        const sesionInfo = document.createElement("div");
-        sesionInfo.id = "estadoSesion";
-        sesionInfo.textContent = "Sesión no iniciada";
-        header.appendChild(sesionInfo);
-    } else {
-        const botonSalir = document.createElement("div");
-        botonSalir.id = "botonSalir";
-        botonSalir.textContent = "Salir";
-        botonSalir.addEventListener("click",(event)=>{
+}
+
+function cerrarSesion() {
+    fetch("/api/cerrarSesion")
+        .then((respuesta) => respuesta.json())
+        .then((respuesta) => {
+            console.log(respuesta);
+            location.reload();
         });
-        header.appendChild(botonSalir);
-    }
 }
