@@ -4,19 +4,19 @@ Proyecto personal para aprender a crear un sistema de login seguro utilizando un
 - Utiliza ExpressJS como lenguaje de API REST backend.
 - Utiliza HTML/SCSS/Javascript plano para frontend.
 
-###Como iniciar:###
+##Como iniciar:##
 
 - Ir a carpeta server.
 - Ejecutar npm install 
 - Ejecutar npm start
 
-###Como modificar base de datos:###
+##Como modificar base de datos:##
 - Borrar archivo server/learning_login_db
 - Ir a la carpeta server
 - Modificar el archivo generateDB.js
 - Ejecutar npm run db
 
-###Características de un sistema seguro###
+##Características de un sistema seguro##
 
 Un sistema seguro debe de...
 
@@ -35,3 +35,9 @@ Características adicionales que se pueden incluir:
 - Inicio de sesión passwordless para clientes google
 - Toda recuperación de contraseña es a través de confirmación por correo
 - Obligar al usuario a utilizar una contraseña segura
+
+Modo de almacenamiento de la sesión
+
+- Variable en el servidor: Evita tener que generar una consulta SQL cada vez que se comprueba la sesión.
+- Lectura de registro en tabla por SQL: Evita llenar la RAM del servidor con datos de sesión del usuario.
+- Archivo en el servidor: Archivo personalizado para cada usuario dentro del servidor, menos efectivo que usar SQL.

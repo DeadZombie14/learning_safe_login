@@ -6,16 +6,38 @@
 const sqlite3 = require("sqlite3");
 const db = new sqlite3.Database("learning_login_db", () => console.log("Cargando base de datos..."));
 db.serialize(()=>{
-    db.run("CREATE TABLE lorem (info TEXT)");
+    // Tabla de usuarios
+    const usuario = `CREATE TABLE usuario(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT,
+        password TEXT
+    )`;
+    db.run(usuario);
+    // Tabla de sesiones
+    const sesion = `CREATE TABLE sesion(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        usuario INTEGER,
+        token TEXT,
+        fecha_acceso DATETIME
+    )`;
+    db.run(sesion);
     
-    let stmt = db.prepare('INSERT INTO lorem VALUES (?)')
-    for (let i = 0; i < 10; i++) {
-        stmt.run('Ipsum ' + i);
-    }
+    /**
+     * Datos de prueba
+     */
+    let stmt = db.prepare('INSERT INTO usuario (nombre, password) VALUES (?,?)');
+    stmt.run("mathier","mathier");
+    stmt.finalize();
+    stmt = db.prepare('INSERT INTO sesion (token, fecha_acceso) VALUES (?,?)');
+    const now = new Date().toISOString();
+    stmt.run("asdasd12345",now);
     stmt.finalize();
 
-    db.each('SELECT rowid AS id, info FROM lorem', function (err, row) {
-        console.log(row.id + ': ' + row.info);
+    db.each("SELECT * FROM usuario", (err, row) => {
+        console.log(row.id + ": " + row.nombre);
+    });
+    db.each("SELECT * FROM sesion", (err, row) => {
+        console.log(row.id + ": " + row.token + " " + row.fecha_acceso);
     });
 });
 db.close();
