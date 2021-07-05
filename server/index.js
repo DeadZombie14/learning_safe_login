@@ -23,8 +23,8 @@ app.post('/api/iniciarSesion', (request, response) => {
         if(registro) {
             // Crear token de usuario
             const nuevoToken = "asdasd12345";
-            const consulta = db.prepare(`UPDATE sesion SET token = "${nuevoToken}" WHERE usuario = ?`);
-            consulta.run(registro.id);
+            const consulta = db.prepare(`UPDATE sesion SET token = ? WHERE usuario = ?`);
+            consulta.run(nuevoToken,registro.id);
             response.setHeader("Set-Cookie",`token=${nuevoToken};HttpOnly;Secure;SameSite=Strict`); // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie
             response.send({estado:"valida"});
         }
@@ -37,14 +37,12 @@ app.post('/api/iniciarSesion', (request, response) => {
 app.get('/api/comprobarSesion', (request, response) => {
     const sesion = request.cookies;
     if(sesion.token) {
-        const consulta = db.prepare(`SELECT token FROM sesion WHERE token = ?`);
+        const consulta = db.prepare(`SELECT * FROM sesion WHERE token = ?`);
         consulta.get(sesion.token,callback=(err, registro) => {
-            if(registro) {
+            if(registro)
                 response.send({estado: "valida"});
-            }
-            else {
+            else 
                 response.status(403).send({estado: "invalida"});
-            }
         });
     } else
         response.status(403).send({estado: "invalida"});
