@@ -5,8 +5,12 @@ loginForm.addEventListener("submit",(event) => {
     const password = document.getElementById("inputPassword").value;
     console.log("Nombre: ",nombre);
     console.log("Contraseña: ",password);
+    const datos = {
+        nombre: nombre,
+        password: password
+    }
+    fetch("/api/iniciarSesion",{method: "POST", body: JSON.stringify(datos)}).then((respuesta) => respuesta.json()).then((respuesta) => console.log(respuesta));
     evaluarSesion(true);
-    fetch("/api/iniciarSesion").then((respuesta) => respuesta.json()).then((respuesta) => console.log(respuesta));
 });
 evaluarSesion(false);
 /**

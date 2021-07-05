@@ -11,7 +11,9 @@ app.get('/api', (request, response) => { // Cargar backend cuando se acceda a AP
     response.send("API login 1.0");
 });
 
-app.get('/api/iniciarSesion', (request, response) => {
+app.post('/api/iniciarSesion', (request, response) => {
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie
+    response.setHeader("Set-Cookie","token=12345;HttpOnly;Secure;SameSite=Strict");
     response.send({status:"200",mensaje:"Sesión iniciada"});
 });
 

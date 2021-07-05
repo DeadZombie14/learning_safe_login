@@ -23,9 +23,12 @@ Un sistema seguro debe de...
 - Encriptar contraseña de ida (cliente-servidor) y vuelta (servidor-cliente)
 - Encriptar con SHA, AES o superior.
 - Añadir sal a la encriptación
-- Modo de sesión: cookies de preferencia
+- Modo de sesión: cookies (Para evitar ataques XSS)
 - Evitar timing attacks (implementar intentos máximos de sesión)
 - Usar tabla personalizada de la DB para los usuarios y sus sesiones
+
+Alternativas de diseño:
+- Usar sessionStorage en vez de cookies (para admitir cross-origin requests)
 
 Características adicionales que se pueden incluir:
 - Utilizar SSL al montar en servidor
