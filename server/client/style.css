@@ -10,6 +10,32 @@ body {
   font-size: 15px;
 }
 
+.header {
+  padding: 1em;
+  background-color: darkmagenta;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2em;
+}
+
+.header #estadoSesion {
+  padding: 1em;
+}
+
+.header #botonSalir {
+  padding: 1em;
+  background-color: #111d;
+  color: white;
+  cursor: pointer;
+}
+
 .iniciar-sesion {
   display: -webkit-box;
   display: -ms-flexbox;
